@@ -1,0 +1,132 @@
+\documentclass[UTF8,zihao=-4]{oucart}
+\usepackage{indentfirst}
+\usepackage{graphicx, subfig}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage[hidelinks]{hyperref}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float} % 提供 [H] 定位
+
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=1.5cm, minimum height=0.6cm,text centered, draw=black, font=\tiny]
+\tikzstyle{process} = [rectangle, minimum width=1.5cm, minimum height=0.6cm, text centered, draw=black, font=\tiny]
+\tikzstyle{decision} = [diamond, minimum width=1.5cm, minimum height=0.6cm, text centered, draw=black, font=\tiny]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+\title{基于Python语言的并行技术在活体细胞影像定量分析中的应用}
+\entitle{Application of Python-based Parallel Computing Techniques in Live Cell Imaging Quantitative Analysis}
+\author{程明宇}
+\studentid{21160001011}
+\advisor{张临杰}
+\department{数学科学学院}{信息与计算科学}
+\grade{2021}
+
+\cnabstractkeywords{
+    随着细胞成像技术的发展，细胞图像数据的规模不断增大，要求图像分析工具具有更高的计算效率和处理速度。Epi-Quant 作为一款开源工具，提供高效的图像分割、细胞分类和追踪功能，广泛应用于细胞动力学研究。然而，随着数据量的增加，Epi-Quant 在大规模数据处理时面临计算效率和资源利用率的瓶颈。
+
+    为解决这一问题，本文采用多线程技术对 Epi-Quant 工具包进行优化，重点对细胞特征计算、细胞分类和细胞追踪模块进行并行化改进。通过并行化细胞特征提取、轮廓分割和帧间匹配任务，显著提高了计算效率和实时追踪能力。
+    
+    优化后的平台在处理大规模数据集时展现出显著的性能提升，能够更好地满足高通量细胞图像数据分析的需求，提供更高效的工具支持，为细胞动力学及相关领域的研究提供了有效的技术支持。}{
+    细胞图像分析，并行计算，多线程，细胞特征计算，细胞分类，细胞追踪
+}
+\enabstractkeywords{
+
+With the advancement of cell imaging technologies, the volume of cell image data is growing rapidly, demanding higher computational efficiency and processing speed from image analysis tools. Epi-Quant, an open-source tool, offers efficient image segmentation, cell classification, and tracking functions, widely used in cell dynamics research. However, as data volumes increase, Epi-Quant faces performance bottlenecks in processing large-scale datasets.
+
+To address this, this paper optimizes the Epi-Quant tool using multi-threading techniques, focusing on parallelizing key tasks such as cell feature calculation, cell classification, and cell tracking. By parallelizing the extraction of cell features, contour segmentation, and frame-to-frame matching, computational efficiency and real-time tracking capability are significantly improved.
+
+The optimized platform shows significant performance improvements when processing large datasets, better meeting the demands of high-throughput cell image data analysis, and providing more efficient tool support for research in cell dynamics and related fields.
+
+}{
+    Cell image analysis, Parallel computing, Multi-threading, Cell feature calculation, Cell classification, Cell tracking
+}
+
+\renewcommand{\baselinestretch}{1.6}
+
+\begin{document}
+
+    \makecover % 封面
+    \makesignature % 扉页
+    \makeabstract % 摘要
+
+% 目录
+    \thispagestyle{tableofcontents}
+    \tableofcontents
+    \newpage
+
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+
+% 正文内容
+% 建议使用 \input{<文件名>} 指令引用其他文件
+
+    \input{includes/section_01}
+    \newpage
+    \input{includes/section02}
+    \newpage
+    \input{includes/section03}
+    \newpage
+    \input{includes/section04.tex}
+    \newpage
+% 参考文献
+    \addcontentsline{toc}{nonumbersection}{参考文献}
+    \begin{thebibliography}{99}
+        \bibitem{ref1}
+        Moen E, Bannon D, Kudo T, et al. Deep learning for cellular image analysis. *Nature Methods*, 2019, 16(12): 1233--1246. doi:10.1038/s41592-019-0403-1.
+        
+        \bibitem{ref2}
+        Stringer C, Wang T, Michaelos M, et al. Cellpose: a generalist algorithm for cellular segmentation. *Nature Methods*, 2021, 18(1): 100--106. doi:10.1038/s41592-020-01018-x.
+        
+        \bibitem{ref3}
+        Alda Kika, Silvana Greca. Multithreading Image Processing in Single-core and Multi-core CPU using Java. *International Journal of Advanced Computer Science and Applications*, 2013, 4(9): 174--180. doi:10.14569/IJACSA.2013.040926.
+        
+        \bibitem{ref4}
+        Dilla D S, Pustovalov E V, Artemeva I L. Applying GPU parallel programming for image processing and clustering. *Computational Nanotechnology*, 2024, 11(4): 77--86. doi:10.33693/2313-223X-2024-11-4-77-86.
+        
+        \bibitem{ref5}
+        Bannon D, Moen E, Schwartz M, et al. DeepCell Kiosk: scaling deep learning-enabled cellular image analysis with Kubernetes. *Nature Methods*, 2021, 18(1): 43--45. Erratum in: Nat Methods, 2021, 18(2): 219. doi:10.1038/s41592-020-01023-0.
+        
+        \bibitem{ref7}
+        Zuvieta H, Torres Cruz F. Efficiency of Image Processing with Parallel Techniques. [EB/OL] 2024. Preprint at: arXiv:doi:10.20944/preprints202408.0178.v1.
+        
+        \bibitem{ref8}
+        Keikhosravi A, Almansour F, Bohrer C H, et al. High-throughput image processing software for the study of nuclear architecture and gene expression. *Sci Rep*, 2024, 14: 18426. doi:10.1038/s41598-024-66600-1.
+        
+        \bibitem{ref9}
+        Schienstock D, Hor J L, Devi S, et al. Cecelia: a multifunctional image analysis toolbox for decoding spatial cellular interactions and behaviour. *Nat Commun*, 2025, 16: 1931. doi:10.1038/s41467-025-57193-y.
+        
+        \bibitem{ref10}
+        Bokhari SH, Çatalyürek ÜV, Gurcan MN. Massively Multithreaded Maxflow for Image Segmentation on the Cray XMT-2. *Concurr Comput*, 2014, 26(18): 2836-2855. doi:10.1002/cpe.3181. PMID: 25598745; PMCID: PMC4295505.
+        
+        \bibitem{ref11}
+        Li, X., Li, Y., Zhou, Y. et al. Real-time denoising enables high-sensitivity fluorescence time-lapse imaging beyond the shot-noise limit. *Nat Biotechnol*, 41, 282–292 (2023). doi:10.1038/s41587-022-01450-8.
+        
+        \bibitem{ref6}
+        Grama A, Gupta A, Karypis G, et al. *Introduction to Parallel Computing* (2nd ed.). Addison-Wesley, 2.
+        
+        \bibitem{ref15}
+        Baer J L. A survey of some theoretical aspects of multiprocessing. *ACM Computing Surveys (CSUR)*, 1973, 5(1): 31-80.
+        
+        \bibitem{ref14}
+        Rathod A B, Khadse R, Bagwan M F. Serial computing vs. parallel computing: A comparative study using MATLAB. *International Journal of Computer Science and Mobile Computing*, 2014, 3(5): 815-820.
+        
+        \bibitem{ref12}
+        Hennessy, John L. and Patterson, David A. *Computer Architecture, Fifth Edition: A Quantitative Approach* (5th ed.). Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 2011.
+        
+        \bibitem{ref13}
+        陈国良, 毛睿, 蔡晔. 高性能计算及其相关新兴技术. *深圳大学学报:理工版*, 2015, 32(1): 25-28. DOI: CNKI:SUN:SZDL.0.2015-01-004.
+        
+    \end{thebibliography}
+    \newpage
+
+% 致谢
+    \addcontentsline{toc}{nonumbersection}{致谢}
+    \begin{center}
+        \zihao{3} \textbf{致谢} \\
+    \end{center}
+
+    在四年大学时光的最后，我想感谢一切给予过我帮助的人，在毕业论文的完成过程中，郭雅倩学姐和张临杰老师曾为我提供了无私细致的指导，在一次次的困难挫折中，我坚信从哪里跌倒就从哪里站起来，学习数学不是一件轻松的事情，同时我也感谢我自己，坚定地选择这条并不轻松的路，并坚持到现在。
+    
+    遥望未来，我将继续在计算机领域深造，愿海大园锲而不舍的学习精神与我相伴，继续在学术道路上披荆斩棘，不断战胜过去的自己。
+\end{document}
